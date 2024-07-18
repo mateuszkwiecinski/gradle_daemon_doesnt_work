@@ -1,0 +1,51 @@
+import org.gradle.kotlin.dsl.ProjectExtensionsKt
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    id("java-gradle-plugin")
+    id "maven-publish"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.sam.with.receiver)
+    alias(libs.plugins.gradle.publish)
+    alias(libs.plugins.usefulness.ktlint.gradle)
+}
+
+repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+samWithReceiver {
+    annotation("org.gradle.api.HasImplicitReceiver")
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+def javaTarget = JavaVersion.VERSION_21
+tasks.withType(JavaCompile).configureEach {
+    options.release.set(javaTarget.majorVersion.toInteger())
+}
+tasks.withType(KotlinCompile).configureEach {
+    kotlinOptions.jvmTarget = javaTarget.toString()
+}
+
+dependencies {
+    implementation(ProjectExtensionsKt.gradleKotlinDsl(project))
+    implementation(libs.android.tools.gradle.plugin)
+    implementation(libs.android.tools.sdkcommon)
+    implementation(libs.android.tools.common)
+    implementation(libs.kotlin.gradle.plugin)
+    implementation(libs.kotlin.compose.compiler.gradle.plugin)
+    implementation(libs.google.ksp.gradle.plugin)
+}
+
+gradlePlugin {
+    plugins {
+        register("reproPlugin") {
+            id = "${group}.repro"
+            implementationClass = "com.foo.repro.gradle.ReproProject"
+        }
+    }
+}

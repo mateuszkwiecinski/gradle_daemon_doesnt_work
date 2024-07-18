@@ -1,0 +1,21 @@
+[versions]
+kotlin = "2.0.0"
+agp = "8.2.2"
+agp-tools = "31.2.2"
+gradle-plugin-publish = "1.2.1"
+usefulness-ktlint = "0.9.0"
+ksp = "2.0.0-1.0.23"
+
+[libraries]
+android-tools-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+android-tools-sdkcommon = { module = "com.android.tools:sdk-common", version.ref = "agp-tools" }
+android-tools-common = { module = "com.android.tools:common", version.ref = "agp-tools" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-compose-compiler-gradle-plugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+google-ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-sam-with-receiver = { id = "org.jetbrains.kotlin.plugin.sam.with.receiver", version.ref = "kotlin" }
+gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradle-plugin-publish" }
+usefulness-ktlint-gradle = { id = "io.github.usefulness.ktlint-gradle-plugin", version.ref = "usefulness-ktlint" }

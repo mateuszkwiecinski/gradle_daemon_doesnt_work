@@ -1,0 +1,15 @@
+*.iml
+.gradle
+/local.properties
+.idea/*
+**/.DS_Store
+build/
+.kotlin/
+!**/src/**/build
+.kotlintest
+
+# Visual Studio Code
+.project
+
+# Ignore generated credentials from google-github-actions/auth
+gha-creds-*.json
