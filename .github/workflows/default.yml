@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: org-self-hosted-ubuntu2204-x64-xsmall
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
